@@ -288,7 +288,7 @@ Book = function(images){
 			index = Math.ceil(number/2) - 1;
 			turnedLeft = (number%2 == 0) ? true : false;
 			// left: 3 pages right: 3 pages turned: left
-				if(index > 1 && index < this.images.length - 4 && turnedLeft){
+				if(index > 1 && index < this.images.length - 3 && turnedLeft){
 					for(var i=index-2,j=0;i<index+4;i++,j++){
 						this.pages[j] = new Page(i,this.images[i].front,this.images[i].back);
 						if(j>2){
@@ -296,13 +296,13 @@ Book = function(images){
 							this.pages[j].isTurnedLeft = false;
 							this.pages[j].setZ(-0.1*j);
 						}
-						else  this.pages[j].setZ(0.1*j-0.5);
+						else  this.pages[j].setZ(0.1*j - 0.1*(this.pages.length-1));
 					}
 					this.leftPage = this.pages[2];
 					this.rightPage = this.pages[3];
 				}
 				// 3,3,right
-				if(index > 2 && index < this.images.length - 3 && !turnedLeft){
+				if(index > 2 && index < this.images.length - 2 && !turnedLeft){
 					for(var i=index-3,j=0;i<index+3;i++,j++){
 						this.pages[j] = new Page(i,this.images[i].front,this.images[i].back);
 						if(j>2){
@@ -310,7 +310,7 @@ Book = function(images){
 							this.pages[j].isTurnedLeft = false;
 							this.pages[j].setZ(-0.1*j);
 						}
-						else  this.pages[j].setZ(0.1*j-0.5);
+						else  this.pages[j].setZ(0.1*j - 0.1*(this.pages.length-1));
 
 					}
 					this.leftPage = this.pages[2];
@@ -357,7 +357,7 @@ Book = function(images){
 							this.pages[i].setZ(-i*0.1);
 						}
 						else{
-							this.pages[i].setZ(0.1*i-(this.pages.length-1));
+							this.pages[i].setZ(0.1*i- 0.1*(this.pages.length-1));
 						}
 					}
 					this.leftPage = this.pages[1];
@@ -367,7 +367,7 @@ Book = function(images){
 				if(index == this.images.length-1 && turnedLeft){
 					for(var i=this.images.length-this.pages.length,j=0;i<this.images.length;i++,j++){
 						this.pages[j] = new Page(i,this.images[i].front,this.images[i].back);
-						this.pages[j].setZ(j*0.1-(this.pages.length-1));
+						this.pages[j].setZ(j*0.1 - 0.1*(this.pages.length-1));
 					}
 					this.leftPage = this.pages[this.pages.length-1];
 					this.rightPage = null;
@@ -382,7 +382,7 @@ Book = function(images){
 							this.pages[j].isTurnedLeft = false;
 						}
 						else{
-							this.pages[j].setZ(0.1*j - (this.pages.length-1));
+							this.pages[j].setZ(0.1*j - 0.1*(this.pages.length-1));
 						}
 					}
 					this.leftPage = this.pages[this.pages.length-2];
@@ -399,12 +399,12 @@ Book = function(images){
 							this.pages[j].isTurnedLeft = false;
 						}
 						else{
-							this.pages[j].setZ(0.1*j - (this.pages.length-1));
+							this.pages[j].setZ(0.1*j - 0.1*(this.pages.length-1));
 						}
 
 					}
-					this.leftPage = this.pages[this.images.length-3];
-					this.rightPage = this.pages[this.images.length-2];
+					this.leftPage = this.pages[this.pages.length-3];
+					this.rightPage = this.pages[this.pages.length-2];
 				}
 
 		}
